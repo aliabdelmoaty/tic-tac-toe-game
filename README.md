@@ -91,7 +91,7 @@ The AI uses the A* algorithm with the following features:
 ## Screenshots
 
 ### Menu - Start Game (Dark Theme)
-![alt text]({5597F451-7217-49BA-BFCF-A507B6E2D8B9}.png)
+![alt text](iamges/{5597F451-7217-49BA-BFCF-A507B6E2D8B9}.png)
 
 ### Menu - Start Game (Light Theme)
 ![alt text]({D56E558E-706D-4B05-9DBD-A056EBE7BFA1}.png)
