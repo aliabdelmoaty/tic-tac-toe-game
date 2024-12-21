@@ -91,14 +91,14 @@ The AI uses the A* algorithm with the following features:
 ## Screenshots
 
 ### Menu - Start Game (Dark Theme)
-![alt text]({5597F451-7217-49BA-BFCF-A507B6E2D8B9}.png)
+![alt text](iamges/{5597F451-7217-49BA-BFCF-A507B6E2D8B9}.png)
 
 ### Menu - Start Game (Light Theme)
-![alt text]({D56E558E-706D-4B05-9DBD-A056EBE7BFA1}.png)
+![alt text](iamges/{D56E558E-706D-4B05-9DBD-A056EBE7BFA1}.png)
 
 ### Game Board (Light Theme)
-![alt text]({03B122B0-4702-49AC-ABBB-B1E58EF22B08}.png)
+![alt text](iamges/{03B122B0-4702-49AC-ABBB-B1E58EF22B08}.png)
 
 ### Game Board (Dark Theme)
-![alt text]({22054C57-CA59-4D88-AF94-2A0BE9271446}.png)
+![alt text](iamges/{22054C57-CA59-4D88-AF94-2A0BE9271446}.png)
 
