@@ -1,3 +1,4 @@
+# استيراد المكتبات اللازمة للواجهة الرسومية واللعبة
 import tkinter as tk
 from tkinter import messagebox
 from player import Player
@@ -5,28 +6,32 @@ from board import Board
 from move import Move
 from theme import Theme
 from typing import Dict 
+
 class BaseGameGUI:
     def __init__(self, window: tk.Tk, theme: Theme):
-        self.window = window  # Store the main window
-        self.current_theme = theme  # Store the current theme
-        self.board = Board()  # Initialize the game board
-        self.current_player = Player.X  # Set the starting player to X
-        self.scores = {Player.X: 0, Player.O: 0}  # Initialize scores for both players
-        self.on_back_to_menu = None  # Add this line
+        # تهيئة النافذة الرئيسية للعبة
+        self.window = window  # تخزين النافذة الرئيسية
+        self.current_theme = theme  # تخزين النمط الحالي (الألوان)
+        self.board = Board()  # إنشاء لوحة اللعب
+        self.current_player = Player.X  # تعيين اللاعب الأول (X)
+        self.scores = {Player.X: 0, Player.O: 0}  # تهيئة نقاط اللاعبين
+        self.on_back_to_menu = None  # متغير للرجوع للقائمة الرئيسية
 
     def create_base_gui(self, title: str):
-        self.main_container = self._create_container()  # Create the main container
-        self._create_title(title)  # Create the title label
-        self._create_scoreboard()  # Create the scoreboard
-        self._create_game_board()  # Create the game board
-        self._create_controls()  # Create control buttons
-        self._create_turn_indicator()  # Create the turn indicator
-        self.apply_theme()  # Apply the current theme to the GUI
+        # إنشاء العناصر الأساسية للواجهة
+        self.main_container = self._create_container()  # إنشاء الحاوية الرئيسية
+        self._create_title(title)  # إنشاء العنوان
+        self._create_scoreboard()  # إنشاء لوحة النقاط
+        self._create_game_board()  # إنشاء لوحة اللعب
+        self._create_controls()  # إنشاء أزرار التحكم
+        self._create_turn_indicator()  # إنشاء مؤشر دور اللاعب
+        self.apply_theme()  # تطبيق النمط المختار
 
     def _create_container(self) -> tk.Frame:
-        container = tk.Frame(self.window, padx=20, pady=20)  # Create a frame with padding
-        container.pack(expand=True, fill='both')  # Pack the frame to expand and fill the window
-        return container  # Return the created frame
+        # إنشاء إطار رئيسي مع هوامش
+        container = tk.Frame(self.window, padx=20, pady=20)
+        container.pack(expand=True, fill='both')
+        return container
 
     def _create_title(self, title: str):
         self.title_label = tk.Label(
@@ -71,19 +76,21 @@ class BaseGameGUI:
         return buttons  # Return the created buttons
 
     def _create_cell_button(self, row: int, col: int) -> tk.Button:
+        # إنشاء زر لكل خلية في لوحة اللعب
         button = tk.Button(
             self.game_frame,
-            text='',
-            font=('Helvetica', 24, 'bold'),
-            width=3,
-            height=1,
-            relief=tk.FLAT,
-            command=lambda: self._handle_move(row, col)
-        )  # Create a button for a cell with specified properties and command
-        button.grid(row=row, column=col, padx=3, pady=3, sticky='nsew')  # Place the button in the grid
-        button.bind('<Enter>', self._on_enter)  # Bind the enter event to change color on hover
-        button.bind('<Leave>', self._on_leave)  # Bind the leave event to revert color on hover
-        return button  # Return the created button
+            text='',  # نص فارغ في البداية
+            font=('Helvetica', 24, 'bold'),  # نمط الخط
+            width=3,  # العرض
+            height=1,  # الارتفاع
+            relief=tk.FLAT,  # نمط الحواف
+            command=lambda: self._handle_move(row, col)  # الدالة التي تنفذ عند الضغط
+        )
+        button.grid(row=row, column=col, padx=3, pady=3, sticky='nsew')
+        # ربط أحداث حركة الماوس
+        button.bind('<Enter>', self._on_enter)  # عند دخول المؤشر
+        button.bind('<Leave>', self._on_leave)  # عند خروج المؤشر
+        return button
 
     def _create_controls(self):
         self.control_frame = tk.Frame(self.main_container)  # Create a frame for control buttons
@@ -218,13 +225,15 @@ class BaseGameGUI:
         self.reset_board()  # Reset the game board
 
     def reset_board(self):
-        self.board.clear()  # Clear the game board
-        self.current_player = Player.X  # Set the starting player to X
-        self.turn_indicator.configure(text=self._get_turn_text())  # Update the turn indicator
+        # إعادة تعيين لوحة اللعب
+        self.board.clear()  # مسح جميع الحركات
+        self.current_player = Player.X  # إعادة تعيين اللاعب الحالي
+        self.turn_indicator.configure(text=self._get_turn_text())  # تحديث مؤشر الدور
+        # مسح نصوص الأزرار
         for row in self.buttons:
             for button in row:
-                button.configure(text='', fg=self.current_theme.value['button_fg'])  # Clear the button texts
+                button.configure(text='', fg=self.current_theme.value['button_fg'])
 
     def _handle_move(self, row: int, col: int):
+        # دالة تجريدية يتم تنفيذها في الفئات الوراثية
         raise NotImplementedError("Subclasses must implement _handle_move")  # Raise an error if not implemented in subclasses
-  
